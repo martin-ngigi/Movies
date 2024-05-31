@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp").version("1.6.10-1.0.4") // Or latest version of KSP
 
 }
 
@@ -69,4 +70,40 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Navigation
+    val compose_version = "2.7.7"
+    implementation("androidx.navigation:navigation-compose:$compose_version")
+
+    // Room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-ktx:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-paging:$room_version")
+
+    // Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.50")
+    ksp("com.google.dagger:hilt-android-compiler:2.50")
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Extended Icons
+    implementation("androidx.compose.material:material:1.6.7")
+
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.34.0")
 }
+
+
+
+//// Allow references to generated code
+//kapt {
+//    correctErrorTypes = true
+//}
