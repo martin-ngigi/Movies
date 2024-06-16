@@ -2,7 +2,10 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
-    id("com.google.devtools.ksp").version("1.6.10-1.0.4") // Or latest version of KSP
+    //id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+    id("kotlin-kapt")
+   // id("com.google.gms.google-services")
+
 
 }
 
@@ -77,13 +80,14 @@ dependencies {
     // Room
     val room_version = "2.6.1"
     implementation("androidx.room:room-ktx:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-paging:$room_version")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    ksp("com.google.dagger:hilt-android-compiler:2.50")
-    ksp("androidx.hilt:hilt-compiler:1.2.0")
+    val hilt_version = "2.51.1"
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-compiler:$hilt_version")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     // Retrofit
@@ -104,6 +108,6 @@ dependencies {
 
 
 //// Allow references to generated code
-//kapt {
-//    correctErrorTypes = true
-//}
+kapt {
+    correctErrorTypes = true
+}
