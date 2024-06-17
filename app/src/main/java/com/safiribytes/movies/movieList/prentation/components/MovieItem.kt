@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -78,13 +80,13 @@ fun MovieItem(
                 )
             )
             .clickable {
-                navHostController.navigate(Screen.Details.rout + "${movie.id}")
+                navHostController.navigate(Screen.Details.rout + "/${movie.id}")
             }
     ) {
         if(imageState is AsyncImagePainter.State.Error) {
             Box (
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding(6.dp)
                     .height(250.dp)
                     .clip(RoundedCornerShape(22.dp))
@@ -92,6 +94,7 @@ fun MovieItem(
                 contentAlignment = Alignment.Center
             ){
                 Icon(
+                    modifier = Modifier.size(70.dp),
                     imageVector = Icons.Rounded.Warning,
                     contentDescription = movie.title
                 )
@@ -105,7 +108,7 @@ fun MovieItem(
 
             Image(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding()
                     .height(250.dp)
                     .clip(RoundedCornerShape(22.dp)),
@@ -118,7 +121,7 @@ fun MovieItem(
         Spacer(modifier = Modifier.height(6.dp))
 
         Text(
-            modifier = Modifier.padding(start = 26.dp, end = 8.dp),
+            modifier = Modifier.padding(start = 16.dp, end = 8.dp),
             text = movie.title,
             color = Color.White,
             fontSize = 15.sp,
